@@ -1,11 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
+
 void main() {
   runApp(const MyApp());
 }
 
 class Contact {
-  String image;
+  Image image;
   String name;
   String mobileNumber;
   DateTime date;
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo 2',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.purple,
       ),
       debugShowCheckedModeBanner: false,
       home: const MyHomePage(title: 'Contacts App'),
@@ -42,7 +44,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 2;
   static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static late List<Widget> _pages;
 
   _MyHomePageState() {
@@ -65,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   var contacts = [
     Contact(
-      'https://i.pravatar.cc/300',
+      Image.asset('pic_1.jpg'),
       'Ahmed',
       '71766137347',
       DateTime.now().add(
@@ -74,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
       true,
     ),
     Contact(
-      'https://i.pravatar.cc/301',
+      Image.asset('pic_1.jpg'),
       'Ali',
       '71766137347',
       DateTime.now().add(
@@ -83,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
       false,
     ),
     Contact(
-      'https://i.pravatar.cc/302',
+      Image.asset('pic_1.jpg'),
       'Kamal',
       '71766137347',
       DateTime.now().add(
@@ -92,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
       true,
     ),
     Contact(
-      'https://i.pravatar.cc/303',
+      Image.asset('pic_1.jpg'),
       'Mohammad',
       '71766137347',
       DateTime.now().add(
@@ -101,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
       true,
     ),
     Contact(
-      'https://i.pravatar.cc/304',
+      Image.asset('pic_1.jpg'),
       'Mohammad',
       '71766137347',
       DateTime.now().add(
@@ -110,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
       false,
     ),
     Contact(
-      'https://i.pravatar.cc/305',
+      Image.asset('pic_1.jpg'),
       'Hussein',
       '71766137347',
       DateTime.now().add(
@@ -119,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
       false,
     ),
     Contact(
-      'https://i.pravatar.cc/306',
+      Image.asset('pic_1.jpg'),
       'Aboud',
       '71766137347',
       DateTime.now().add(
@@ -128,7 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
       false,
     ),
     Contact(
-      'https://i.pravatar.cc/307',
+      Image.asset('pic_1.jpg'),
       'Osama',
       '71766137347',
       DateTime.now().add(
@@ -141,14 +143,26 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget buildFavoritesGridView() {
     return Column(
       children: [
-        Text('Favorites'),
-        Divider(thickness: 4,),
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Text(
+            'Favorites',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20.0,
+            ),
+          ),
+        ),
+        Divider(
+          thickness: 4,
+        ),
         Expanded(
           child: GridView.count(
             crossAxisCount: 3,
             children: List.generate(5, (index) {
-              var personColor = Color((math.Random().nextDouble() * 0xFFFFFF).toInt())
-                  .withOpacity(1.0);
+              var personColor =
+                  Color((math.Random().nextDouble() * 0xFFFFFF).toInt())
+                      .withOpacity(1.0);
               return Center(
                 child: Container(
                   width: 120,
@@ -159,7 +173,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   alignment: Alignment.center,
                   decoration:
-                  BoxDecoration(shape: BoxShape.circle, color: personColor),
+                      BoxDecoration(shape: BoxShape.circle, color: personColor),
                 ),
               );
             }),
@@ -176,7 +190,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Row(
           children: [
             CircleAvatar(
-              backgroundImage: NetworkImage(_contact.image),
+              backgroundImage: AssetImage('pic_1.jpg'),
             ),
             Padding(
               padding: const EdgeInsets.all(16),
@@ -243,8 +257,7 @@ class _MyHomePageState extends State<MyHomePage> {
           BottomNavigationBarItem(
               icon: Icon(Icons.access_time_outlined),
               label: 'School',
-              activeIcon: Icon(Icons.access_time_filled)
-          ),
+              activeIcon: Icon(Icons.access_time_filled)),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
